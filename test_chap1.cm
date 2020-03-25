@@ -3,4 +3,5 @@ Library
 is
   chap1.sml
   test_chap1.sml
+  test.cm
   $/basis.cm
