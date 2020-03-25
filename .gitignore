@@ -1,0 +1,7 @@
+__pycache__
+.mypy_cache
+*.swp
+build
+build.ninja
+.ninja_*
+.cm

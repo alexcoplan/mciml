@@ -1,0 +1,21 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SMLNJ_HOME: /usr/lib/smlnj
+    steps:
+    - uses: actions/checkout@v1
+    - name: apt-update
+      run: sudo apt update
+    - name: apt-install-deps
+      run: sudo apt install ninja-build mypy smlnj gcc-multilib g++-multilib
+    - name: mypy
+      run: mypy --strict configure.py util/mlbuild.py util/bootstrap.py
+    - name: configure
+      run: ./configure.py
+    - name: ninja
+      run: ninja

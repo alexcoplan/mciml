@@ -1,0 +1,6 @@
+Library
+  structure TestChap1
+is
+  chap1.sml
+  test_chap1.sml
+  $/basis.cm
