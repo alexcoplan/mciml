@@ -18,6 +18,8 @@ in
 
     fun assertEqI x y = assertEq Int.toString x y
 
+    fun assertStrEq x y = assertEq (fn x => "\"" ^ x ^ "\"") x y
+
     fun testMain suite =
       ((testRunner suite); OS.Process.success)
       handle e => (Util.printLn ("FAIL\n" ^ ("Uncaught exception: " ^ (exnMessage e)));
