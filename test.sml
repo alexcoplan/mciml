@@ -16,9 +16,11 @@ in
       if x <> y then raise (Fail ("expected " ^ (show x) ^ " to equal " ^ (show y)))
       else ()
 
-    fun assertEqI x y = assertEq Int.toString x y
+    fun assertLstEq showEl = assertEq (Util.showList showEl)
 
+    fun assertEqI x y = assertEq Int.toString x y
     fun assertStrEq x y = assertEq (fn x => "\"" ^ x ^ "\"") x y
+    fun assertIntListEq x y = assertLstEq Int.toString
 
     fun testMain suite =
       ((testRunner suite); OS.Process.success)

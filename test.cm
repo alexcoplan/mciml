@@ -2,5 +2,5 @@ Library
   structure Test
 is
   test.sml
-  util.sml
+  util.cm
   $/basis.cm
