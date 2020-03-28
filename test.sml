@@ -18,9 +18,9 @@ in
 
     fun assertLstEq showEl = assertEq (Util.showList showEl)
 
-    fun assertEqI x y = assertEq Int.toString x y
-    fun assertStrEq x y = assertEq (fn x => "\"" ^ x ^ "\"") x y
-    fun assertIntListEq x y = assertLstEq Int.toString
+    val assertEqI = assertEq Int.toString
+    val assertStrEq = assertEq (fn x => "\"" ^ x ^ "\"")
+    val assertIntListEq = assertLstEq Int.toString
 
     fun testMain suite =
       ((testRunner suite); OS.Process.success)
