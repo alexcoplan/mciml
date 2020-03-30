@@ -1,0 +1,12 @@
+Library
+  structure Mlex
+  structure LexUtil
+is
+  tiger.lex
+  tokens.sig
+  tokens.sml
+  errormsg.sml
+  lex_util.sml
+  ../util.cm
+  $/basis.cm
+

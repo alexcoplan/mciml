@@ -1,0 +1,7 @@
+Library
+  structure TestLexer
+is
+  test_lexer.sml
+  lexer.cm
+  ../test.cm
+  $/basis.cm

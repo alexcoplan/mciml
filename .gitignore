@@ -6,3 +6,4 @@ build
 build.ninja
 .ninja_*
 .cm
+*.lex.sml
