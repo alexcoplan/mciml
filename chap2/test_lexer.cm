@@ -3,5 +3,5 @@ Library
 is
   test_lexer.sml
   lexer.cm
-  ../test.cm
+  ../base/test.cm
   $/basis.cm

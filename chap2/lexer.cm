@@ -7,6 +7,6 @@ is
   tokens.sml
   errormsg.sml
   lex_util.sml
-  ../util.cm
+  ../base/util.cm
   $/basis.cm
 
