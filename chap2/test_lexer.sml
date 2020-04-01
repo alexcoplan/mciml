@@ -55,10 +55,23 @@ local
   val lexer_cases = [
     ( "type", [ "TYPE", "EOF" ] ),
     ( Util.join " " keywords, List.map Util.upcase keywords ),
-    ( Util.join " " punct_symbols, punct_toktypes )
+    ( Util.join " " punct_symbols, punct_toktypes ),
+    ( "x", [ "ID(x)", "EOF" ] ),
+    ( "abc a3 myVar_b23", [ "ID(abc)", "ID(a3)", "ID(myVar_b23)", "EOF" ] ),
+    ( "5 23 442", [ "INT(5)", "INT(23)", "INT(442)", "EOF" ] ),
+    ( "\"test_string_lit\"", [ "STRING(\"test_string_lit\")" ] ),
+    ( "\"string lit with spaces\" a2",
+        [ "STRING(\"string lit with spaces\")", "ID(a2)", "EOF" ] ),
+    ( "\"myStr\" myId \"myStr2\"",
+        [ "STRING(\"myStr\")", "ID(myId)", "STRING(\"myStr2\")", "EOF" ] )
   ]
 
-  fun tokType tokStr = hd (String.tokens (fn c => c = #" ") tokStr)
+  (* cheap hack - we just care about the first part of the string
+   * used to represent the token *)
+  fun tokType tokStr =
+    case (Util.splitOnce tokStr "   ") of
+         NONE => raise (Fail "bad token string")
+      | (SOME (ty,_)) => ty
 
   fun lexerTest (input, toks) =
   let
@@ -78,9 +91,7 @@ local
          T.assertStrEq (src 2) "lo")
       end
     ),
-    (
-      "test_lexer", fn () => (List.map lexerTest lexer_cases; ())
-    )
+    ( "test_lexer", fn () => (List.map lexerTest lexer_cases; ()) )
   ]
 in
 

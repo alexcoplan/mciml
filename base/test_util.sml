@@ -30,7 +30,31 @@ local
     ( "test_int_list_eq",
       fn () => T.assertIntListEq [1,2,3] [1,2,3] ),
     ( "test_takedrop", fn () => (List.map takeDropTest takeDropCases; ()) ),
-    ( "test_upcase", fn () => T.assertStrEq "ABC" (U.upcase "abc") )
+    ( "test_upcase", fn () => T.assertStrEq "ABC" (U.upcase "abc") ),
+    ( "test_startswith", fn () => (
+      T.assertThat (U.startsWith [1,2,3] []);
+      T.assertThat (U.startsWith [1,2,3] [1]);
+      T.assertThat (U.startsWith [1,2,3] [1,2]);
+      T.assertThat (U.startsWith [1,2,3] [1,2,3]);
+      T.assertNot (U.startsWith [1,2,3] [1,2,3,4]);
+      T.assertNot (U.startsWith [1,2,3] [4]);
+      T.assertNot (U.startsWith [1,2,3] [1,3])
+    )),
+    ( "test_lstlst", fn () => (
+      T.assertIntOptEq (U.lstlst [1,2,3,4] [1,2]) (SOME 0);
+      T.assertIntOptEq (U.lstlst [1,2,3,4] [2,3]) (SOME 1);
+      T.assertIntOptEq (U.lstlst [1,2,3,4] [3,4]) (SOME 2);
+      T.assertIntOptEq (U.lstlst [1,2,3,4] [4,5]) NONE
+    )),
+    ( "test_strstr", fn () => (
+      T.assertIntOptEq (U.strstr "abc def!" "abc") (SOME 0);
+      T.assertIntOptEq (U.strstr "abc def!" "def") (SOME 4);
+      T.assertIntOptEq (U.strstr "abc def!" "cde") NONE
+    )),
+    ( "test_splitOnce", fn () => (
+      T.assertStrPairOptEq (U.splitOnce "abcXYdef" "XY") (SOME ("abc", "def"));
+      T.assertStrPairOptEq (U.splitOnce "abcXYdef" "XZ") NONE
+    ))
   ];
 in
   structure TestUtil = struct

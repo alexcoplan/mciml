@@ -26,11 +26,11 @@ local
   fun interpTest testCases = (fn () => interpIter testCases)
 
   val tests = [
-    ( "test_maxargs_prog", (fn () => (T.assertEqI (C1.maxargs C1.prog) 2)) ),
+    ( "test_maxargs_prog", (fn () => (T.assertIntEq (C1.maxargs C1.prog) 2)) ),
     ( "test_maxargs_simple", (fn () => (
-      T.assertEqI (C1.maxargs (C1.AssignStm ("x", C1.NumExp 3))) 0;
-      T.assertEqI (C1.maxargs (C1.PrintStm [C1.NumExp 42])) 1;
-      T.assertEqI (C1.maxargs printTestCase) 2
+      T.assertIntEq (C1.maxargs (C1.AssignStm ("x", C1.NumExp 3))) 0;
+      T.assertIntEq (C1.maxargs (C1.PrintStm [C1.NumExp 42])) 1;
+      T.assertIntEq (C1.maxargs printTestCase) 2
     ))),
     ( "test_interp_print", interpTest printCases ),
     ( "test_interp_arith", interpTest arithCases ),
