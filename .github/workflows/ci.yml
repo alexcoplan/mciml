@@ -12,7 +12,7 @@ jobs:
     - name: apt-update
       run: sudo apt update
     - name: apt-install-deps
-      run: sudo apt install ninja-build mypy smlnj gcc-multilib g++-multilib
+      run: sudo apt install ninja-build mypy smlnj ml-lpt gcc-multilib g++-multilib
     - name: mypy
       run: mypy --strict configure.py util/mlbuild.py util/bootstrap.py
     - name: configure
