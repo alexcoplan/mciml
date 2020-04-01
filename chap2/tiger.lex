@@ -8,7 +8,7 @@ fun err(p1,p2) = ErrorMsg.error p1
 fun eof() = let val pos = hd(!linePos) in Tokens.EOF(pos,pos) end
 
 
-%% 
+%%
 %%
 ","	 => (Tokens.COMMA(yypos,yypos+1));
 ":"  => (Tokens.COLON(yypos,yypos+1));
