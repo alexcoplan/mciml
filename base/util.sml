@@ -2,14 +2,14 @@ structure Util = struct
   fun id x = x
   fun printLn s = print (s ^ "\n")
 
-  fun showList showEl lst =
-  let
-    fun iter [] = ""
-      | iter [x] = showEl x
-      | iter (x :: xs) = (showEl x) ^ "," ^ (iter xs)
-  in
-    "[" ^ (iter lst) ^ "]"
-  end
+  (* join a list of strings with a given separator *)
+  fun join _ [] = ""
+    | join _ [x] = x
+    | join sep (x::xs) = x ^ sep ^ (join sep xs)
+
+  fun showList showEl lst = "[" ^ (join "," (List.map showEl lst)) ^ "]"
+
+  fun upcase str = String.map Char.toUpper str
 
   local
     fun tdIter [] _ taken = (List.rev taken, [])

@@ -1,6 +1,7 @@
 Library
   structure Mlex
   structure LexUtil
+  structure Tokens
 is
   tiger.lex
   tokens.sig

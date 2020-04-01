@@ -29,7 +29,8 @@ local
       fn () => T.assertStrEq (U.showList i2s [1,2,3]) "[1,2,3]" ),
     ( "test_int_list_eq",
       fn () => T.assertIntListEq [1,2,3] [1,2,3] ),
-    ( "test_takedrop", fn () => (List.map takeDropTest takeDropCases; ()) )
+    ( "test_takedrop", fn () => (List.map takeDropTest takeDropCases; ()) ),
+    ( "test_upcase", fn () => T.assertStrEq "ABC" (U.upcase "abc") )
   ];
 in
   structure TestUtil = struct
