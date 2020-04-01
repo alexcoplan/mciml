@@ -1,9 +1,0 @@
-Library
-  structure TestLexer
-is
-  test_lexer.sml
-  errormsg.sml
-  tokens.sig
-  tokens.sml
-  tiger.lex
-  smlnj-lib.cm
