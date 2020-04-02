@@ -52,6 +52,22 @@ local
   val punct_symbols = List.map (fn x => #1 x) punctuation
   val punct_toktypes = List.map (fn x => #2 x) punctuation
 
+val tiger_test1 = "/* an array type and an array variable */ \
+\ let \
+\   type arrtype = array of int \
+\   var arr1:arrtype := arrtype [10] of 0 \
+\ in \
+\   arr1 \
+\ end"
+
+  val tiger_test1_toks = [
+    "LET", "TYPE", "ID(arrtype)", "EQ", "ARRAY", "OF", "ID(int)",
+    "VAR", "ID(arr1)", "COLON", "ID(arrtype)", "ASSIGN", "ID(arrtype)",
+    "LBRACK", "INT(10)", "RBRACK", "OF", "INT(0)", "IN", "ID(arr1)",
+    "END", "EOF"
+  ]
+
+
   val lexer_cases = [
     ( "type", [ "TYPE", "EOF" ] ),
     ( Util.join " " keywords, List.map Util.upcase keywords ),
@@ -72,7 +88,8 @@ local
       [ "STRING(\"here\nare\tsome\"escapes\")", "EOF" ] ),
     ( "x2 /* a comment */ y2", [ "ID(x2)", "ID(y2)", "EOF" ] ),
     ( "a1 /* a comment */ x2 /* and another */ b3",
-      [ "ID(a1)", "ID(x2)", "ID(b3)", "EOF" ] )
+      [ "ID(a1)", "ID(x2)", "ID(b3)", "EOF" ] ),
+    ( tiger_test1, tiger_test1_toks )
   ]
 
   (* cheap hack - we just care about the first part of the string
