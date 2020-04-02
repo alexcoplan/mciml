@@ -63,7 +63,13 @@ local
     ( "\"string lit with spaces\" a2",
         [ "STRING(\"string lit with spaces\")", "ID(a2)", "EOF" ] ),
     ( "\"myStr\" myId \"myStr2\"",
-        [ "STRING(\"myStr\")", "ID(myId)", "STRING(\"myStr2\")", "EOF" ] )
+        [ "STRING(\"myStr\")", "ID(myId)", "STRING(\"myStr2\")", "EOF" ] ),
+    ( "\"a \\\"quote in a string\" xy23 \"more string\"",
+        [ "STRING(\"a \"quote in a string\")", "ID(xy23)",
+          "STRING(\"more string\")", "EOF" ]
+    ),
+    ( "\"here\\nare\\tsome\\\"escapes\"",
+      [ "STRING(\"here\nare\tsome\"escapes\")", "EOF" ] )
   ]
 
   (* cheap hack - we just care about the first part of the string
@@ -91,6 +97,7 @@ local
          T.assertStrEq (src 2) "lo")
       end
     ),
+    ( "test_unescape", fn () => T.assertStrEq (LexUtil.unescape "\\\\") "\\" ),
     ( "test_lexer", fn () => (List.map lexerTest lexer_cases; ()) )
   ]
 in

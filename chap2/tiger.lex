@@ -53,7 +53,7 @@ nil      => (Tokens.NIL(yypos, yypos + size yytext));
 [0-9]+ => (Tokens.INT(Option.valOf (Int.fromString yytext),
            yypos, yypos + size yytext));
 [a-zA-Z][a-zA-Z0-9_]* => (Tokens.ID(yytext, yypos, yypos + size yytext));
-\"[^\"]*\" => (Tokens.STRING(yytext, yypos, yypos + size yytext));
+\"([^\"]|\\.)*\" => (Tokens.STRING(LexUtil.unescape yytext, yypos, yypos + size yytext));
 \n	=> (lineNum := !lineNum+1; linePos := yypos :: !linePos; continue());
 (" "|"\t")+ => (continue ());
 .       => (ErrorMsg.error yypos ("illegal character " ^ yytext); continue());
