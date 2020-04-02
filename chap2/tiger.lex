@@ -56,5 +56,5 @@ nil      => (Tokens.NIL(yypos, yypos + size yytext));
 \"([^\"]|\\.)*\" => (Tokens.STRING(LexUtil.unescape yytext, yypos, yypos + size yytext));
 \n	=> (lineNum := !lineNum+1; linePos := yypos :: !linePos; continue());
 (" "|"\t")+ => (continue ());
+"/*"([^"*"]|("*"[^"/"]))*"*/" => (continue ());
 .       => (ErrorMsg.error yypos ("illegal character " ^ yytext); continue());
-

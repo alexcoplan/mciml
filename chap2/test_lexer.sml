@@ -69,7 +69,10 @@ local
           "STRING(\"more string\")", "EOF" ]
     ),
     ( "\"here\\nare\\tsome\\\"escapes\"",
-      [ "STRING(\"here\nare\tsome\"escapes\")", "EOF" ] )
+      [ "STRING(\"here\nare\tsome\"escapes\")", "EOF" ] ),
+    ( "x2 /* a comment */ y2", [ "ID(x2)", "ID(y2)", "EOF" ] ),
+    ( "a1 /* a comment */ x2 /* and another */ b3",
+      [ "ID(a1)", "ID(x2)", "ID(b3)", "EOF" ] )
   ]
 
   (* cheap hack - we just care about the first part of the string
