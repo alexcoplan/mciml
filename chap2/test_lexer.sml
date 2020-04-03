@@ -1,5 +1,6 @@
 local
   structure T = Test
+  structure Lex = TigerLexFun(structure Tokens = MockTokens)
 
   val keywords = [
     "while",
@@ -92,16 +93,11 @@ val tiger_test1 = "/* an array type and an array variable */ \
     ( tiger_test1, tiger_test1_toks )
   ]
 
-  (* cheap hack - we just care about the first part of the string
-   * used to represent the token *)
-  fun tokType tokStr =
-    case (Util.splitOnce tokStr "   ") of
-         NONE => raise (Fail "bad token string")
-      | (SOME (ty,_)) => ty
+  fun tokType (ty, _) = ty
 
   fun lexerTest (input, toks) =
   let
-    val lexer = Mlex.makeLexer (LexUtil.stringSource input)
+    val lexer = Lex.makeLexer (LexUtil.stringSource input)
     fun iter [] = ()
       | iter (t :: ts) = (T.assertStrEq (tokType (lexer ())) t; iter ts)
   in

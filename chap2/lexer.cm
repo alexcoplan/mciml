@@ -1,11 +1,10 @@
 Library
-  structure Mlex
+  functor TigerLexFun
+  signature Tiger_TOKENS
   structure LexUtil
-  structure Tokens
 is
   tiger.lex
   tokens.sig
-  tokens.sml
   errormsg.sml
   lex_util.sml
   ../base/util.cm

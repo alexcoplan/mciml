@@ -1,5 +1,7 @@
+type svalue = Tokens.svalue
 type pos = int
-type lexresult = Tokens.token
+type ('a,'b) token = ('a,'b) Tokens.token
+type lexresult = (svalue,pos) token
 
 val lineNum = ErrorMsg.lineNum
 val linePos = ErrorMsg.linePos
@@ -7,8 +9,10 @@ fun err(p1,p2) = ErrorMsg.error p1
 
 fun eof() = let val pos = hd(!linePos) in Tokens.EOF(pos,pos) end
 
-
 %%
+
+%header (functor TigerLexFun(structure Tokens : Tiger_TOKENS));
+
 %%
 ","	 => (Tokens.COMMA(yypos,yypos+1));
 ":"  => (Tokens.COLON(yypos,yypos+1));

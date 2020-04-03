@@ -1,49 +1,49 @@
 signature Tiger_TOKENS =
 sig
-type linenum (* = int *)
-type token
-val TYPE:  linenum * linenum -> token
-val VAR:  linenum * linenum -> token
-val FUNCTION:  linenum * linenum -> token
-val BREAK:  linenum * linenum -> token
-val OF:  linenum * linenum -> token
-val END:  linenum * linenum -> token
-val IN:  linenum * linenum -> token
-val NIL:  linenum * linenum -> token
-val LET:  linenum * linenum -> token
-val DO:  linenum * linenum -> token
-val TO:  linenum * linenum -> token
-val FOR:  linenum * linenum -> token
-val WHILE:  linenum * linenum -> token
-val ELSE:  linenum * linenum -> token
-val THEN:  linenum * linenum -> token
-val IF:  linenum * linenum -> token
-val ARRAY:  linenum * linenum -> token
-val ASSIGN:  linenum * linenum -> token
-val OR:  linenum * linenum -> token
-val AND:  linenum * linenum -> token
-val GE:  linenum * linenum -> token
-val GT:  linenum * linenum -> token
-val LE:  linenum * linenum -> token
-val LT:  linenum * linenum -> token
-val NEQ:  linenum * linenum -> token
-val EQ:  linenum * linenum -> token
-val DIVIDE:  linenum * linenum -> token
-val TIMES:  linenum * linenum -> token
-val MINUS:  linenum * linenum -> token
-val PLUS:  linenum * linenum -> token
-val DOT:  linenum * linenum -> token
-val RBRACE:  linenum * linenum -> token
-val LBRACE:  linenum * linenum -> token
-val RBRACK:  linenum * linenum -> token
-val LBRACK:  linenum * linenum -> token
-val RPAREN:  linenum * linenum -> token
-val LPAREN:  linenum * linenum -> token
-val SEMICOLON:  linenum * linenum -> token
-val COLON:  linenum * linenum -> token
-val COMMA:  linenum * linenum -> token
-val STRING: (string) *  linenum * linenum -> token
-val INT: (int) *  linenum * linenum -> token
-val ID: (string) *  linenum * linenum -> token
-val EOF:  linenum * linenum -> token
+type ('a, 'b) token
+type svalue
+val TYPE:  'a * 'a -> (svalue,'a) token
+val VAR:  'a * 'a -> (svalue,'a) token
+val FUNCTION:  'a * 'a -> (svalue,'a) token
+val BREAK:  'a * 'a -> (svalue,'a) token
+val OF:  'a * 'a -> (svalue,'a) token
+val END:  'a * 'a -> (svalue,'a) token
+val IN:  'a * 'a -> (svalue,'a) token
+val NIL:  'a * 'a -> (svalue,'a) token
+val LET:  'a * 'a -> (svalue,'a) token
+val DO:  'a * 'a -> (svalue,'a) token
+val TO:  'a * 'a -> (svalue,'a) token
+val FOR:  'a * 'a -> (svalue,'a) token
+val WHILE:  'a * 'a -> (svalue,'a) token
+val ELSE:  'a * 'a -> (svalue,'a) token
+val THEN:  'a * 'a -> (svalue,'a) token
+val IF:  'a * 'a -> (svalue,'a) token
+val ARRAY:  'a * 'a -> (svalue,'a) token
+val ASSIGN:  'a * 'a -> (svalue,'a) token
+val OR:  'a * 'a -> (svalue,'a) token
+val AND:  'a * 'a -> (svalue,'a) token
+val GE:  'a * 'a -> (svalue,'a) token
+val GT:  'a * 'a -> (svalue,'a) token
+val LE:  'a * 'a -> (svalue,'a) token
+val LT:  'a * 'a -> (svalue,'a) token
+val NEQ:  'a * 'a -> (svalue,'a) token
+val EQ:  'a * 'a -> (svalue,'a) token
+val DIVIDE:  'a * 'a -> (svalue,'a) token
+val TIMES:  'a * 'a -> (svalue,'a) token
+val MINUS:  'a * 'a -> (svalue,'a) token
+val PLUS:  'a * 'a -> (svalue,'a) token
+val DOT:  'a * 'a -> (svalue,'a) token
+val RBRACE:  'a * 'a -> (svalue,'a) token
+val LBRACE:  'a * 'a -> (svalue,'a) token
+val RBRACK:  'a * 'a -> (svalue,'a) token
+val LBRACK:  'a * 'a -> (svalue,'a) token
+val RPAREN:  'a * 'a -> (svalue,'a) token
+val LPAREN:  'a * 'a -> (svalue,'a) token
+val SEMICOLON:  'a * 'a -> (svalue,'a) token
+val COLON:  'a * 'a -> (svalue,'a) token
+val COMMA:  'a * 'a -> (svalue,'a) token
+val STRING: (string) *  'a * 'a -> (svalue,'a) token
+val INT: (int) *  'a * 'a -> (svalue,'a) token
+val ID: (string) *  'a * 'a -> (svalue,'a) token
+val EOF:  'a * 'a -> (svalue,'a) token
 end
